@@ -1,0 +1,42 @@
+{% set versions = {
+    "0.8.5": "47322f6c275b2cb55f78ba81fab0ec6cf12335230d5501d2ac4085f1d720bd31"
+} %}
+
+
+{% set version = environ.get('COMMIT_VERSION', None) %}
+{% set version = version or versions.keys()|first %}
+{% set version = version|string %}
+
+package:
+  name: {{ environ.get('ANACONDA_PACKAGE', "eko")|string|lower }}
+  version: {{ environ.get('ANACONDA_VERSION', version)|replace("-", ".") }}
+
+source:
+  url: "https://github.com/NNPDF/eko/archive/refs/tags/v{{ version }}.tar.gz"
+  {% if versions.get(version, None) %}
+  sha256: {{ versions.get(version) }}
+  {% endif %}
+
+
+build:
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python<3.11,>=3.8
+    - poetry
+    - pip
+  run:
+    - python<3.11,>=3.8
+
+about:
+  home: "https://eko.readthedocs.io/"
+  license: "GPL-3.0"
+  summary: "Evolution Kernel Operators"
+  description: |
+    EKO is a Python module to solve the DGLAP equations in N-space in terms of Evolution Kernel Operators in x-space.
+
+extra:
+  recipe-maintainers:
+    - meiyasan
