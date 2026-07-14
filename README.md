@@ -15,8 +15,8 @@ Evolution Kernel Operators
 
 | Architecture | Latest published |
 |--------------|------------------|
-| linux-amd64 (`linux-64`) | ✅ `0.14.3` |
-| linux-arm64 (`linux-aarch64`) | ✅ `0.14.3` |
+| linux-amd64 (`linux-64`) | ✅ `0.14.6` |
+| linux-arm64 (`linux-aarch64`) | ✅ `0.14.6` |
 
 _As of the last feedstock render; the badges above are live._
 
